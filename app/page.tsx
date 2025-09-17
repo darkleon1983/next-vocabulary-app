@@ -1,103 +1,53 @@
-import Image from "next/image";
+import React from "react";
+import cn from "classnames";
 
-export default function Home() {
+export default function MainPage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className={cn("text-[#2C3E50] mx-[150px] my-[25px] text-2xl text-justify")}>
+      <h1 className={cn("my-[25px] text-center text-5xl")}>Английский для программиста.</h1>
+      <p className={cn("")}>
+        <span className={cn("ml-4")}>Этот </span>проект создан для начинающих web-разработчиков, как инструмент для
+        изучения английского языка. На начальном этапе развития программиста ему
+        не нужно говорить на английском, но ему сильно облегчит жизнь
+        способность на нем читать.
+      </p>{" "}
+      <p>
+        {" "}
+        <span className={cn("ml-4")}>Сколько</span> слов нужно знать начинающему web-разработчику, чтобы читать
+        документацию по языку или литературу по используемым технологиям?
+      </p>
+      <p>
+        {" "}
+        <span className={cn("ml-4")}>На</span> разных ресурсах указываются разные цифры, на одном авторитетном
+        сервисе для русскоязычных программистов я нашел цифру 3000-4000 слов, но
+        на юТубКанале одного программиста из России, который работает в Европе я
+        услышал очень оптимистичную цифру - 700 слов. И мне это количество слов
+        кажется более правдоподобным. Важно понимать, что вам нужно знать 700
+        специальных слов, часть из которых термины или слова из математики и
+        т.д. Имеется в виду, что человеку, хорошо освоившему школьную программу
+        по английскому, плюсом нужно выучить 700 слов и он сможет очень сносно
+        понимать, что написано в литературе по вашему языку программирования.
+      </p>
+      <p>
+        {" "}
+        <span className={cn("ml-4")}>Как</span> выучить эти слова, а главное, как узнать, какие слова нужно учить?
+        Могу вам предложить свою методику, она называется "берешь книгу и
+        читаешь"! В процессе чтения пишешь перевод незнакомых слов прямо между
+        строчек. Если вы читаете с экрана, тогда придется вести таблицу в
+        экселе. При заучивании слов важно регулярная практика, будь то
+        ежедневное повторение или упражнение на этом тренажере. Но, как вы
+        понимаете, лучшей практикой является чтение на английском.
+      </p>
+      <p>
+        {" "}
+        <span className={cn("ml-4")}>Вы</span> уже наверняка гуглили "как учить слова на английском" или что-то
+        подобное. Советую почитать статьи или книги Вячеслава Дубынина, он
+        объясняет, как работает память, но если вам лень еще что-то читать, дам
+        совет от себя: повторяйте заученные слова через 20 минут, потом через 8
+        часов, а в следующий раз через 20 часов, это увеличит вероятность
+        перехода информации из краткосрочной в долговременную память.
+      </p>
+      <p><span className={cn("ml-4")}>Удачи</span> вам и спасибо, что пользуетесь моим сайтом!</p>
     </div>
   );
 }
