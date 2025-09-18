@@ -1,9 +1,11 @@
 import React from "react";
 import cn from "classnames";
+import { Header } from "./components/Header";
 
 export default function MainPage() {
   return (
     <div className={cn("text-[#2C3E50] mx-[150px] my-[25px] text-2xl text-justify")}>
+      <Header/>
       <h1 className={cn("my-[25px] text-center text-5xl")}>Английский для программиста.</h1>
       <p className={cn("")}>
         <span className={cn("ml-4")}>Этот </span>проект создан для начинающих web-разработчиков, как инструмент для
