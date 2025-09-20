@@ -12,8 +12,8 @@ interface HeaderProps {
 const menuItems = [
   { label: "О проекте", href: "/" },
   { label: "Тренажер", href: "/TrainingPage" },
-  { label: "Поддержать", href: "/donate" },
-  { label: "Автор", href: "/author" },
+  { label: "Поддержать", href: "/SupportPage" },
+  { label: "Автор", href: "/AboutMe" },
   { label: "Портфолио", href: "/Portfolio" },
 ];
 
