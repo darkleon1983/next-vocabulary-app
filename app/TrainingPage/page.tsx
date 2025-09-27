@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import { Header } from "../components/Header";
 import Button from "../components/ui/Button";
@@ -17,24 +17,24 @@ type Word = {
 const words = wordsJson as Word[];
 
 export default function TrainingPage() {
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const [ids, setIds] = useState<number[]>([]);
   const arrayMaker = (array: Word[]): number[] => {
     return array.map((word) => word.id);
   };
 
   const handleClick = () => {
-    const ids = arrayMaker(words);
-    console.log(ids);
-    return ids;
+    const newIds = arrayMaker(words);
+    setIds(newIds);
+    setIsButtonVisible(false);
   };
-  console.log(words.length);
+  console.log(ids);
   return (
     <div>
       <Header />
       <h2>Train your english</h2>
-      {/* {words.map((word) => (
-        <p>{word.word}</p>
-      ))} */}
-      <Button onClick={handleClick} />
+      {isButtonVisible && <Button onClick={handleClick} />}
+      {ids.map((id: number) => (<div key={id}>{words[id].word}</div>))}
     </div>
   );
 }
