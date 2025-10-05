@@ -1,10 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import { MouseEvent } from "react";
 import cn from "classnames";
 import { Header } from "../components/Header";
 import Button from "../components/ui/Button";
 import wordsJson from "../mocks/words.json";
+import { shuffle } from "../utils/wordPicker";
+import answersArray from "../mocks/answersArray.json";
+import { TaskComponent } from "../components/TaskComponent/index";
+import { VariantComponent } from "../components/VariantComponent";
+import { StatisticComponent } from "../components/StatisticComponent";
 
 type Word = {
   id: number;
@@ -19,22 +25,39 @@ const words = wordsJson as Word[];
 export default function TrainingPage() {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [ids, setIds] = useState<number[]>([]);
+  const [isTrainingStarted, setIsTrainingStarted] = useState(false);
+  const distractors = shuffle<string>(answersArray);
+
   const arrayMaker = (array: Word[]): number[] => {
     return array.map((word) => word.id);
   };
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const label = event.currentTarget.dataset.label || "Unkonwn Label";
     const newIds = arrayMaker(words);
-    setIds(newIds);
+    setIds(shuffle(newIds));
+    setIsTrainingStarted(true);
     setIsButtonVisible(false);
   };
-  console.log(ids);
+
+  console.log("this is ids", ids);
+  const firstWord = ids.length > 0 ? words.find((word) => word.id === ids[0]) ?? null : null;
   return (
     <div>
+      {" "}
       <Header />
-      <h2>Train your english</h2>
-      {isButtonVisible && <Button onClick={handleClick} />}
-      {ids.map((id: number) => (<div key={id}>{words[id].word}</div>))}
+      <h2>Тренируй свой английския</h2>
+      {!isTrainingStarted && <Button onClick={handleClick} />}
+      <div className={cn("grid grid-cols-3 text-3xl")}>
+        {/* <div>{words[ids[0]].word}</div> */}
+        {isTrainingStarted && (
+          <>
+            <TaskComponent word={firstWord}/>
+            <VariantComponent word={firstWord} distractors={distractors}/>
+            <StatisticComponent />
+          </>
+        )}
+      </div>
     </div>
   );
 }
