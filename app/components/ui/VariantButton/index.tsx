@@ -18,12 +18,12 @@ const VariantButton = ({
   return (
     <div>
       <button
-
         data-word={translation}
+        data-label={label}
         {...props}
         className={cn(styles.variantButton, className)}
       >
-        {label || translation}
+        {label}
       </button>
     </div>
   );
