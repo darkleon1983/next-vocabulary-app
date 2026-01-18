@@ -18,7 +18,7 @@ export const TaskComponent = ({word, className}: TaskComponentProps) => {
   return(
 <div>
   {word ?  (<div className={cn("h-[100px]")}>
-    <div className={cn("h-full grid justify-items-center content-center text-6xl text-gray-700")}>{word.word}</div>
+    <div className={cn("h-full grid justify-items-center content-center text-6xl")}>{word.word}</div>
     {/* <p>Перевод:{word.translation}</p>
     <p>Часть речи:{word.partOfSpeech}</p>
     <p>Категория:{word.category}</p>

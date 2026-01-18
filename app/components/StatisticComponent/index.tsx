@@ -14,13 +14,24 @@ type StatisticComponentProps = {
   correctAnswers: Word[];
 };
 
-export const StatisticComponent = ({ wrongAnswers, correctAnswers }: StatisticComponentProps) => {
+export const StatisticComponent = ({
+  wrongAnswers,
+  correctAnswers,
+}: StatisticComponentProps) => {
   return (
     <div>
-
-      <h2>Statistic</h2>
-      <p>Wrong answers number: <span  className={cn("text-red-700", wrongAnswers.length > correctAnswers.length && "text-5xl")}>{wrongAnswers.length}</span></p>
-      <p>Correct answers number: <span className={cn("text-green-700", correctAnswers.length > wrongAnswers.length && "text-5xl")}>{correctAnswers.length}</span></p>
+      {/* <h2>Статистика</h2> */}
+      <div>
+        {" "}
+        <p>
+          Неверно:{" "}
+          <span className={cn("text-red-700")}>{wrongAnswers.length}</span>
+        </p>
+        <p>
+          Верно:{" "}
+          <span className={cn("text-green-700")}>{correctAnswers.length}</span>
+        </p>
+      </div>
     </div>
   );
 };

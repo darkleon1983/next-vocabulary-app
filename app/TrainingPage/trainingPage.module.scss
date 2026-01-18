@@ -1,0 +1,33 @@
+@media (max-width: 650px) {
+ 
+  .trainingContainer {
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr;
+  }
+  .taskItem {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 1;
+    grid-column-end: 4;
+  }
+  .variantItem {
+    margin-left: 20px;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 3;
+  }
+  .statisticItem {
+    grid-row-start: 2;
+    grid-column-start: 3;
+    grid-row-end: 2;
+    grid-column-end: 3;
+    font-size: 22px;
+  }
+  .resultstatistic {
+    color: tomato;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+}

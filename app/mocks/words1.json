@@ -1,51 +1,37 @@
 [
   {
     "id": 0,
-    "word": "devide",
-    "translation": "делить",
-    "partOfSpeech": "verb",
-    "category": " Web development"
+    "word": "contiguous",
+    "translation": "смежный",
+    "partOfSpeech": "adjective",
+    "category": "Web development"
   },
   {
     "id": 1,
-    "word": "short hand",
-    "translation": "стенография",
+    "word": "to splice",
+    "translation": "сращивать",
     "partOfSpeech": "verb",
-    "category": " Web development"
+    "category": "Web development"
   },
   {
     "id": 2,
-    "word": "review",
-    "translation": "обзор",
-    "partOfSpeech": "noun",
-    "category": " Web development"
+    "word": "substantially",
+    "translation": "существенно, по существу",
+    "partOfSpeech": "adverb",
+    "category": "Web development"
   },
   {
     "id": 3,
-    "word": "clarify",
-    "translation": "уточнять",
-    "partOfSpeech": "verb",
-    "category": " Web development"
+    "word": "simultaneously",
+    "translation": "одновременно",
+    "partOfSpeech": "adverb",
+    "category": "Web development"
   },
   {
     "id": 4,
-    "word": "declare",
-    "translation": "объявлять",
-    "partOfSpeech": "verb",
-    "category": " Web development"
-  },
-  {
-    "id": 5,
-    "word": "key points",
-    "translation": "ключевые моменты",
-    "partOfSpeech": "noun",
-    "category": " Web development"
-  },
-  {
-    "id": 6,
-    "word": "refer",
-    "translation": "ссылаться",
-    "partOfSpeech": "verb",
-    "category": " Web development"
+    "word": "plain",
+    "translation": "простой, незамысловатый",
+    "partOfSpeech": "adjective",
+    "category": "Web development"
   }
 ]

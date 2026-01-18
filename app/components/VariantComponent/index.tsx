@@ -24,6 +24,8 @@ type VariantComponentProps = {
   setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
   setIsButtonVisible: Dispatch<SetStateAction<boolean>>;
   isButtonVisible: boolean;
+  isResultStatistic: boolean;
+  setResultStatistic: Dispatch<SetStateAction<boolean>>
   // goToNextWord: () => void;
 };
 
@@ -39,34 +41,14 @@ export const VariantComponent = ({
   setIsTrainingStarted,
   setIsButtonVisible,
   isButtonVisible,
+  isResultStatistic,
+  setResultStatistic,
 }: // goToNextWord,
 VariantComponentProps) => {
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     const label = event.currentTarget.dataset.label || "Unknown label";
     const translation = word ? word.translation.trim() : "Нет перевода";
-    // if (word) {
-    //   if (label === translation) {
-    //     // Правильный ответ
-    //     setCorrectAnswers((prev) =>
-    //       prev.some((w) => w.id === word.id) ? prev : [...prev, word]
-    //     );
-    //     // Удаляем первый элемент из ids
-    //     setIds((prev) => {
-    //       const newIds = prev.slice(1);
-    //       if (newIds.length === 0 && isTrainingStarted) {
-    //         setIsTrainingStarted(false);
-    //         setIsButtonVisible(true);
-    //       }
-    //       return newIds;
-    //     });
-    //   } else {
-    //     // Неправильный ответ
-    //     setWrongAnswers((prev) =>
-    //       prev.some((w) => w.id === word.id) ? prev : [...prev, word]
-    //     );
-    //   }
-    // }
-    // goToNextWord();
+
     if (word) {
       if (label === translation) {
         // Правильный ответ
@@ -83,6 +65,7 @@ VariantComponentProps) => {
         const newIds = prev.slice(1);
         if(newIds.length === 0 && isTrainingStarted) {
           setIsTrainingStarted(false);
+          setResultStatistic(true);
           setIsButtonVisible(true);
         }
         return newIds;
@@ -100,7 +83,7 @@ VariantComponentProps) => {
 
   return (
     <div>
-      <h2>Variants</h2>
+      <h2>Варианты ответа</h2>
       <div className={cn("mt-5 grid grid-rows-4 gap-6")}>
         {variants.map((label, index) => (
           <VariantButton

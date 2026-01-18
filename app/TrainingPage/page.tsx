@@ -5,12 +5,14 @@ import { MouseEvent } from "react";
 import cn from "classnames";
 import { Header } from "../components/Header";
 import Button from "../components/ui/Button";
-import wordsJson from "../mocks/words.json";
+import wordsJson from "../mocks/words1.json";
 import { shuffle } from "../utils/wordPicker";
 import answersArray from "../mocks/answersArray.json";
 import { TaskComponent } from "../components/TaskComponent/index";
 import { VariantComponent } from "../components/VariantComponent";
 import { StatisticComponent } from "../components/StatisticComponent";
+import { ResultStatistic } from "../components/ResultStatistic";
+import styles from "./trainingPage.module.scss";
 
 type Word = {
   id: number;
@@ -29,6 +31,7 @@ export default function TrainingPage() {
   const [wrongAnswers, setWrongAnswers] = useState<Word[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<Word[]>([]);
   const distractors = shuffle<string>(answersArray);
+  const [isResultStatistic, setResultStatistic] = useState(false);
 
   const arrayMaker = (array: Word[]): number[] => {
     return array.map((word) => word.id);
@@ -40,40 +43,64 @@ export default function TrainingPage() {
     setIds(shuffle(newIds));
     setIsTrainingStarted(true);
     setIsButtonVisible(false);
-    
+    setResultStatistic(false);
+    setWrongAnswers([]);
+    setCorrectAnswers([]);
   };
 
   // console.log("this is ids", ids);
   const firstWord =
     ids.length > 0 ? words.find((word) => word.id === ids[0]) ?? null : null;
   return (
-    <div>
+    <div className={cn(styles.trainingContainer)}>
       {" "}
       <Header />
-      <h2>Тренируй свой английский</h2>
+      {isButtonVisible && (
+        <h2 className={cn(styles.heading, "text-6xl text-center sm:text-2xl")}>
+          Тренируй свой английский
+        </h2>
+      )}
       {!isTrainingStarted && <Button onClick={handleClick} />}
       <div className={cn("grid grid-cols-3 text-3xl")}>
         {/* <div>{words[ids[0]].word}</div> */}
         {isTrainingStarted && (
           <>
-            <TaskComponent word={firstWord} />
-            <VariantComponent 
-            word={firstWord} 
-            distractors={distractors} 
-            correctAnswers={correctAnswers} 
-            setCorrectAnswers={setCorrectAnswers} 
-            wrongAnswers={wrongAnswers} 
-            isTrainingStarted={isTrainingStarted}
-            setIsTrainingStarted={setIsTrainingStarted}
-            isButtonVisible={isButtonVisible}
-            setIsButtonVisible={setIsButtonVisible}
-            setWrongAnswers={setWrongAnswers}
-            // goToNextWord={goToNextWord}
-            setIds={setIds}/>
-            <StatisticComponent 
-            correctAnswers={correctAnswers}
-            wrongAnswers={wrongAnswers}/>
+            <div className={cn(styles.taskItem)}>
+              <TaskComponent word={firstWord} />
+            </div>
+            <div className={cn(styles.variantItem)}>
+              <VariantComponent
+                word={firstWord}
+                distractors={distractors}
+                correctAnswers={correctAnswers}
+                setCorrectAnswers={setCorrectAnswers}
+                wrongAnswers={wrongAnswers}
+                isTrainingStarted={isTrainingStarted}
+                setIsTrainingStarted={setIsTrainingStarted}
+                isButtonVisible={isButtonVisible}
+                setIsButtonVisible={setIsButtonVisible}
+                setWrongAnswers={setWrongAnswers}
+                // goToNextWord={goToNextWord}
+                setIds={setIds}
+                isResultStatistic={isResultStatistic}
+                setResultStatistic={setResultStatistic}
+              />
+            </div>
+            <div className={cn(styles.statisticItem)}>
+              {" "}
+              <StatisticComponent
+                correctAnswers={correctAnswers}
+                wrongAnswers={wrongAnswers}
+              />
+            </div>
           </>
+        )}
+        {isResultStatistic && (
+          <ResultStatistic
+            wrongAnswers={wrongAnswers}
+            correctAnswers={correctAnswers}
+            className={cn(styles.resultstatistic)}
+          />
         )}
       </div>
     </div>
