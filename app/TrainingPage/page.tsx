@@ -13,6 +13,7 @@ import { VariantComponent } from "../components/VariantComponent";
 import { StatisticComponent } from "../components/StatisticComponent";
 import { ResultStatistic } from "../components/ResultStatistic";
 import styles from "./trainingPage.module.scss";
+import StopTestButton from "../components/ui/StopTestButton";
 
 type Word = {
   id: number;
@@ -50,7 +51,7 @@ export default function TrainingPage() {
 
   // console.log("this is ids", ids);
   const firstWord =
-    ids.length > 0 ? words.find((word) => word.id === ids[0]) ?? null : null;
+    ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
   return (
     <div className={cn(styles.trainingContainer)}>
       {" "}
@@ -65,6 +66,7 @@ export default function TrainingPage() {
         {/* <div>{words[ids[0]].word}</div> */}
         {isTrainingStarted && (
           <>
+            <StopTestButton />
             <div className={cn(styles.taskItem)}>
               <TaskComponent word={firstWord} />
             </div>
