@@ -66,7 +66,7 @@ export default function TrainingPage() {
         {/* <div>{words[ids[0]].word}</div> */}
         {isTrainingStarted && (
           <>
-            <StopTestButton />
+            {/* <StopTestButton /> */}
             <div className={cn(styles.taskItem)}>
               <TaskComponent word={firstWord} />
             </div>
