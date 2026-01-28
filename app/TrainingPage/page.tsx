@@ -5,7 +5,7 @@ import { MouseEvent } from "react";
 import cn from "classnames";
 import { Header } from "../components/Header";
 import Button from "../components/ui/Button";
-import wordsJson from "../mocks/words1.json";
+import wordsJson from "../mocks/words.json";
 import { shuffle } from "../utils/wordPicker";
 import answersArray from "../mocks/answersArray.json";
 import { TaskComponent } from "../components/TaskComponent/index";
@@ -62,11 +62,10 @@ export default function TrainingPage() {
         </h2>
       )}
       {!isTrainingStarted && <Button onClick={handleClick} />}
-      <div className={cn("grid grid-cols-3 text-3xl")}>
+      <div className={cn("grid grid-cols-3")}>
         {/* <div>{words[ids[0]].word}</div> */}
         {isTrainingStarted && (
           <>
-            {/* <StopTestButton /> */}
             <div className={cn(styles.taskItem)}>
               <TaskComponent word={firstWord} />
             </div>
@@ -104,6 +103,10 @@ export default function TrainingPage() {
             className={cn(styles.resultstatistic)}
           />
         )}
+      </div>
+      <div className={cn("text-center")}>
+        {" "}
+        {isTrainingStarted && <StopTestButton />}
       </div>
     </div>
   );

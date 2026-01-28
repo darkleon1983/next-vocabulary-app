@@ -1,9 +1,9 @@
 @media (max-width: 650px) {
- 
   .trainingContainer {
     display: grid;
     grid-template-columns: 1fr, 1fr;
     grid-template-rows: 1fr, 1fr;
+    outline: 1px solid red;
   }
   .taskItem {
     grid-row-start: 1;
