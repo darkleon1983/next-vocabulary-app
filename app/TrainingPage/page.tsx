@@ -52,6 +52,9 @@ export default function TrainingPage() {
   // console.log("this is ids", ids);
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
+  const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
+    console.log(event);
+  };
   return (
     <div className={cn(styles.trainingContainer)}>
       {" "}
@@ -106,7 +109,7 @@ export default function TrainingPage() {
       </div>
       <div className={cn("text-center")}>
         {" "}
-        {isTrainingStarted && <StopTestButton />}
+        {isTrainingStarted && <StopTestButton onClick={handleClickStop} />}
       </div>
     </div>
   );

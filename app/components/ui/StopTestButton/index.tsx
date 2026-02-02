@@ -1,9 +1,18 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import cn from "classnames";
 import styles from "./stopTestButton.module.scss";
 
-const StopTestButton = () => {
-  return <button className={cn(styles.stopButton)}>Stop the test</button>;
+type StopTestButtonProps = {
+  className?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+};
+
+const StopTestButton = ({ className, onClick }: StopTestButtonProps) => {
+  return (
+    <button className={cn(styles.stopButton)} onClick={onClick}>
+      Stop the test
+    </button>
+  );
 };
 
 export default StopTestButton;
