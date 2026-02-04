@@ -54,6 +54,7 @@ export default function TrainingPage() {
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
     console.log(event);
+    console.log("hello, programmer!");
   };
   return (
     <div className={cn(styles.trainingContainer)}>
