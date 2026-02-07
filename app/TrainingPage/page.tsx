@@ -110,7 +110,13 @@ export default function TrainingPage() {
       </div>
       <div className={cn("text-center")}>
         {" "}
-        {isTrainingStarted && <StopTestButton onClick={handleClickStop} />}
+        {isTrainingStarted && (
+          <StopTestButton
+            onClick={handleClickStop}
+            isTrainingStarted={isTrainingStarted}
+            setIsTrainingStarted={setIsTrainingStarted}
+          />
+        )}
       </div>
     </div>
   );

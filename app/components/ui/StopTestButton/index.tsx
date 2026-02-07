@@ -17,19 +17,29 @@
 
 // export default StopTestButton;
 
-import React, { MouseEventHandler } from "react";
+import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import cn from "classnames";
 import styles from "./stopTestButton.module.scss";
 
 type StopTestButtonProps = {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  isTrainingStarted: boolean;
+  setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
 };
 
-const StopTestButton = ({ className, onClick }: StopTestButtonProps) => {
+const StopTestButton = ({
+  className,
+  onClick,
+  isTrainingStarted,
+  setIsTrainingStarted,
+}: StopTestButtonProps) => {
+  const handleClick = () => {
+    setIsTrainingStarted(!isTrainingStarted);
+  };
   return (
     <div>
-      <button onClick={onClick} className={cn(styles.stopButton)}>
+      <button onClick={handleClick} className={cn(styles.stopButton)}>
         Stop the test
       </button>
     </div>
