@@ -20,16 +20,19 @@ export const StatisticComponent = ({
 }: StatisticComponentProps) => {
   return (
     <div>
-      {/* <h2>Статистика</h2> */}
       <div>
         {" "}
         <p>
           Неверно:{" "}
-          <span className={cn("text-red-700")}>{wrongAnswers.length}</span>
+          <span className={cn("text-red-700 text-3xl")}>
+            {wrongAnswers.length}
+          </span>
         </p>
         <p>
           Верно:{" "}
-          <span className={cn("text-green-700")}>{correctAnswers.length}</span>
+          <span className={cn("text-green-700 text-3xl")}>
+            {correctAnswers.length}
+          </span>
         </p>
       </div>
     </div>

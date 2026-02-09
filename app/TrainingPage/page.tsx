@@ -53,7 +53,7 @@ export default function TrainingPage() {
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
-    console.log(event);
+    // console.log(event);
     console.log("hello, programmer!");
   };
   return (
@@ -66,8 +66,7 @@ export default function TrainingPage() {
         </h2>
       )}
       {!isTrainingStarted && <Button onClick={handleClick} />}
-      <div className={cn("grid grid-cols-3")}>
-        {/* <div>{words[ids[0]].word}</div> */}
+      <div className={cn("grid grid-cols-3 ")}>
         {isTrainingStarted && (
           <>
             <div className={cn(styles.taskItem)}>
@@ -85,7 +84,6 @@ export default function TrainingPage() {
                 isButtonVisible={isButtonVisible}
                 setIsButtonVisible={setIsButtonVisible}
                 setWrongAnswers={setWrongAnswers}
-                // goToNextWord={goToNextWord}
                 setIds={setIds}
                 isResultStatistic={isResultStatistic}
                 setResultStatistic={setResultStatistic}
