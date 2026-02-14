@@ -14,6 +14,7 @@ import { StatisticComponent } from "../components/StatisticComponent";
 import { ResultStatistic } from "../components/ResultStatistic";
 import styles from "./trainingPage.module.scss";
 import StopTestButton from "../components/ui/StopTestButton";
+import { useTest } from "@/context/TestContext";
 
 type Word = {
   id: number;
@@ -26,9 +27,13 @@ type Word = {
 const words = wordsJson as Word[];
 
 export default function TrainingPage() {
-  const [isButtonVisible, setIsButtonVisible] = useState(true);
+  const {
+    isTrainingStarted,
+    setIsTrainingStarted,
+    isButtonVisible,
+    setIsButtonVisible,
+  } = useTest();
   const [ids, setIds] = useState<number[]>([]);
-  const [isTrainingStarted, setIsTrainingStarted] = useState(false);
   const [wrongAnswers, setWrongAnswers] = useState<Word[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<Word[]>([]);
   const distractors = shuffle<string>(answersArray);
@@ -57,9 +62,11 @@ export default function TrainingPage() {
     console.log("hello, programmer!");
   };
   return (
-    <div className={cn(styles.trainingContainer)}>
+    <div
+      className={cn(styles.trainingContainer, isTrainingStarted && "mt-[60px]")}
+    >
       {" "}
-      <Header />
+      {!isTrainingStarted && <Header />}
       {isButtonVisible && (
         <h2 className={cn(styles.heading, "text-6xl text-center sm:text-2xl")}>
           Тренируй свой английский

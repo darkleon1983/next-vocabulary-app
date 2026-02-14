@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
+import { TestProvider } from "@/context/TestContext";
 
 const roboto = Roboto({
   subsets: ["cyrillic"],
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={roboto.className}>
-      <body className={"bg-gray-300"}>{children}</body>
+      <body className={"bg-gray-300"}>
+        <TestProvider>{children}</TestProvider>
+      </body>
     </html>
   );
 }

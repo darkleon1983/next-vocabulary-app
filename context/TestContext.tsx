@@ -1,6 +1,10 @@
+"use client";
+
 import React, {
   Children,
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useState,
@@ -8,9 +12,9 @@ import React, {
 
 type TestContextType = {
   isTrainingStarted: boolean;
-  setIsTrainingStarted: (v: boolean) => void;
+  setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
   isButtonVisible: boolean;
-  setIsButtonVisible: (v: boolean) => void;
+  setIsButtonVisible: Dispatch<SetStateAction<boolean>>;
 };
 const TestContext = createContext<TestContextType | undefined>(undefined);
 
