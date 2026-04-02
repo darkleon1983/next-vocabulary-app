@@ -7,32 +7,32 @@
     /* Light theme - soft pastel colors */
     --background: 0 0% 98%;
     --foreground: 222 47% 20%;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 222 47% 20%;
-    
+
     --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    
+
     --secondary: 220 14% 96%;
     --secondary-foreground: 222 47% 20%;
-    
+
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
-    
+
     --accent: 220 14% 96%;
     --accent-foreground: 222 47% 20%;
-    
+
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 221 83% 53%;
-    
+
     --radius: 0.75rem;
   }
 
@@ -40,28 +40,28 @@
     /* Dark theme */
     --background: 222 47% 7%;
     --foreground: 220 13% 91%;
-    
+
     --card: 222 47% 9%;
     --card-foreground: 220 13% 91%;
-    
+
     --primary: 217 91% 60%;
     --primary-foreground: 222 47% 7%;
-    
+
     --secondary: 217 33% 17%;
     --secondary-foreground: 220 13% 91%;
-    
+
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    
+
     --accent: 217 33% 17%;
     --accent-foreground: 220 13% 91%;
-    
+
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
-    
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    
+
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
@@ -69,13 +69,15 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  
+  /* * {
+    @apply border;
+  } */
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -92,7 +94,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
   }
   50% {
@@ -124,12 +127,20 @@
 }
 
 /* Staggered animation delays */
-.animation-delay-100 { animation-delay: 100ms; }
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-300 { animation-delay: 300ms; }
-.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
 
 /* Code/Word font styling */
 .font-code {
-  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 }

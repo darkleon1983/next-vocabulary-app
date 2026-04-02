@@ -16,7 +16,25 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "WordCoder - Английский для программистов",
-  description: "Интерактивный тренажер для изучения английского языка с мгновенной проверкой",
+  description:
+    "Интерактивный тренажер для изучения английского языка с мгновенной проверкой",
+  keywords: [
+    "английский для программистов",
+    "IT английский",
+    "технический английский",
+    "английский для разработчиков",
+    "английский для IT",
+    "учить английский программисту",
+    "английские слова для программистов",
+    "изучение IT английского онлайн",
+    "тренажер английского для разработчиков",
+    "как выучить английский программисту",
+    "learn programming english",
+    "english for developers",
+    "it english vocabulary",
+    "technical english for programmers",
+    "english for software engineers",
+  ],
 };
 
 export default function RootLayout({
@@ -25,7 +43,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="ru"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="font-sans min-h-screen bg-background text-foreground transition-colors duration-300">
         <ThemeProvider defaultTheme="light" storageKey="wordcoder-theme">
           <TestProvider>{children}</TestProvider>

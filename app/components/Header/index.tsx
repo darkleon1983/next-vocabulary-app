@@ -23,8 +23,8 @@ export const Header: React.FC<HeaderProps> = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold font-code text-sm transition-transform group-hover:scale-105">
-            WC
+          <div className="w-18 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold font-code text-sm transition-transform group-hover:scale-105">
+          ВордКодер
           </div>
           <span className="text-lg font-semibold text-foreground hidden sm:block">
             WordCoder
