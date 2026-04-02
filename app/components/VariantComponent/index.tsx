@@ -1,5 +1,4 @@
-import React, { Dispatch, MouseEvent, SetStateAction } from "react";
-import cn from "classnames";
+import React, { Dispatch, MouseEvent, SetStateAction, useState } from "react";
 import VariantButton from "../ui/VariantButton";
 import { shuffle } from "@/app/utils/wordPicker";
 
@@ -26,7 +25,6 @@ type VariantComponentProps = {
   isButtonVisible: boolean;
   isResultStatistic: boolean;
   setResultStatistic: Dispatch<SetStateAction<boolean>>
-  // goToNextWord: () => void;
 };
 
 export const VariantComponent = ({
@@ -40,36 +38,45 @@ export const VariantComponent = ({
   isTrainingStarted,
   setIsTrainingStarted,
   setIsButtonVisible,
-  isButtonVisible,
   isResultStatistic,
   setResultStatistic,
-}: // goToNextWord,
-VariantComponentProps) => {
+}: VariantComponentProps) => {
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     const label = event.currentTarget.dataset.label || "Unknown label";
     const translation = word ? word.translation.trim() : "Нет перевода";
 
-    if (word) {
-      if (label === translation) {
-        // Правильный ответ
+    if (word && selectedAnswer === null) {
+      setSelectedAnswer(label);
+      const correct = label === translation;
+      setIsCorrect(correct);
+
+      if (correct) {
         setCorrectAnswers((prev) =>
           prev.some((w) => w.id === word.id) ? prev : [...prev, word]
         );
       } else {
-        // Неправильный ответ
         setWrongAnswers((prev) =>
           prev.some((w) => w.id === word.id) ? prev : [...prev, word]
         );
       }
-      setIds((prev) => {
-        const newIds = prev.slice(1);
-        if(newIds.length === 0 && isTrainingStarted) {
-          setIsTrainingStarted(false);
-          setResultStatistic(true);
-          setIsButtonVisible(true);
-        }
-        return newIds;
-      })
+
+      // Auto-advance after showing feedback
+      setTimeout(() => {
+        setSelectedAnswer(null);
+        setIsCorrect(null);
+        setIds((prev) => {
+          const newIds = prev.slice(1);
+          if(newIds.length === 0 && isTrainingStarted) {
+            setIsTrainingStarted(false);
+            setResultStatistic(true);
+            setIsButtonVisible(true);
+          }
+          return newIds;
+        });
+      }, 800);
     }
   };
 
@@ -79,20 +86,35 @@ VariantComponentProps) => {
       ? shuffle([translation, ...distractors.slice(0, 3)])
       : shuffle([translation, "variant 2", "variant 3", "variant 4"]);
 
-  console.log(translation);
-
   return (
-    <div>
-      <h2>Варианты ответа</h2>
-      <div className={cn("mt-5 grid grid-rows-4 gap-6")}>
-        {variants.map((label, index) => (
-          <VariantButton
-            key={index}
-            onClick={handleClick}
-            label={label}
-            translation={label === translation ? translation : label}
-          />
-        ))}
+    <div className="w-full">
+      <p className="text-center text-muted-foreground mb-4">Выберите правильный перевод</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        {variants.map((label, index) => {
+          const isSelected = selectedAnswer === label;
+          const isCorrectAnswer = label === translation;
+          
+          let state: "default" | "correct" | "incorrect" = "default";
+          if (selectedAnswer !== null) {
+            if (isCorrectAnswer) {
+              state = "correct";
+            } else if (isSelected && !isCorrectAnswer) {
+              state = "incorrect";
+            }
+          }
+          
+          return (
+            <VariantButton
+              key={index}
+              onClick={handleClick}
+              label={label}
+              translation={label === translation ? translation : label}
+              state={state}
+              disabled={selectedAnswer !== null}
+              animationDelay={index * 50}
+            />
+          );
+        })}
       </div>
     </div>
   );

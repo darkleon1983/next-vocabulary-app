@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { TestProvider } from "@/context/TestContext";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const roboto = Roboto({
-  subsets: ["cyrillic"],
+const inter = Inter({
+  subsets: ["cyrillic", "latin"],
+  variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["cyrillic", "latin"],
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Английский для программиста",
-  description: "Приложение для изучения английского языка",
+  title: "WordCoder - Английский для программистов",
+  description: "Интерактивный тренажер для изучения английского языка с мгновенной проверкой",
 };
 
 export default function RootLayout({
@@ -18,9 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.className}>
-      <body className={"bg-gray-300"}>
-        <TestProvider>{children}</TestProvider>
+    <html lang="ru" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans min-h-screen bg-background text-foreground transition-colors duration-300">
+        <ThemeProvider defaultTheme="light" storageKey="wordcoder-theme">
+          <TestProvider>{children}</TestProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
