@@ -53,22 +53,39 @@ export default function TrainingPage() {
 
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
-  
+
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
     console.log("Test stopped");
   };
 
+  console.log(
+    "Result statistic is   ",
+    isResultStatistic,
+    "TrainingStarted is   ",
+    isTrainingStarted,
+  );
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Start Screen */}
         {!isTrainingStarted && !isResultStatistic && (
           <div className="flex flex-col items-center justify-center min-h-[60vh] text-center animate-fade-in-up">
             <div className="mb-8">
               <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                >
                   <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
                   <path d="M8 7h6" />
                   <path d="M8 11h8" />
@@ -81,7 +98,7 @@ export default function TrainingPage() {
                 Интерактивные уроки с мгновенной проверкой
               </p>
             </div>
-            
+
             <Button onClick={handleClick} />
           </div>
         )}
@@ -99,13 +116,15 @@ export default function TrainingPage() {
                 onClick={handleClickStop}
                 isTrainingStarted={isTrainingStarted}
                 setIsTrainingStarted={setIsTrainingStarted}
+                setResultStatistic={setResultStatistic}
+                isResultStatistic={false}
               />
             </div>
 
             {/* Word Card */}
             <div className="flex flex-col items-center">
               <TaskComponent word={firstWord} />
-              
+
               <div className="w-full max-w-2xl mt-8">
                 <VariantComponent
                   word={firstWord}
@@ -134,11 +153,9 @@ export default function TrainingPage() {
               wrongAnswers={wrongAnswers}
               correctAnswers={correctAnswers}
             />
-            
+
             <div className="flex justify-center mt-8">
-              <Button onClick={handleClick}>
-                Начать новый тест
-              </Button>
+              <Button onClick={handleClick}>Начать новый тест</Button>
             </div>
           </div>
         )}

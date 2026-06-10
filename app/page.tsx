@@ -10,8 +10,11 @@ export default function MainPage() {
       <main className="max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Hero Section */}
         <div className="text-center mb-12 animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
+          {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
             Английский для программиста — изучай IT-лексику быстрее
+          </h1> */}
+          <h1 className="text-4xl sm:text-3xl lg:text-6xl font-bold text-foreground mb-4 text-balance">
+            WordCoder — тренажёр английского для программистов
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
             Интерактивный тренажёр для изучения английского для разработчиков.

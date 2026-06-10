@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "WordCoder - Английский для программистов",
   description:
-    "Интерактивный тренажер для изучения английского языка с мгновенной проверкой",
+    "Интерактивный тренажер для изучения английского языка с мгновенной проверкой. Реальные задачи, прогресс и статистика.",
   keywords: [
     "английский для программистов",
     "IT английский",
@@ -34,7 +34,23 @@ export const metadata: Metadata = {
     "it english vocabulary",
     "technical english for programmers",
     "english for software engineers",
+    "английский язык",
+    "учи английский",
+    "тренажёр английского",
+    "vocabulary trainer",
+    "english practice",
   ],
+  authors: [{ name: "Евгений Королев" }],
+  openGraph: {
+    title: "WordCoder — Учи английский эффективно",
+    description: "Практика английского через интерактивные уроки и тесты",
+    images: [{ url: "/og-image.png" }],
+    siteName: "WordCoder",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

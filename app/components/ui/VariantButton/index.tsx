@@ -1,70 +1,62 @@
 import React from "react";
+import cn from "classnames";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  className?: string;
+type VariantButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   label: string;
   translation?: string;
-  state?: "default" | "correct" | "incorrect";
+  isSelected?: boolean;
+  isCorrectAnswer?: boolean;
+  disabled?: boolean;
   animationDelay?: number;
+  className?: string;
 };
 
 const VariantButton = ({
-  className,
   label,
   translation,
-  state = "default",
+  isSelected = false,
+  isCorrectAnswer = false,
+  disabled = false,
   animationDelay = 0,
-  disabled,
+  className,
+  onClick,
   ...props
-}: ButtonProps) => {
-  const stateStyles = {
-    default: `
-      bg-card border-border text-foreground
-      hover:border-primary hover:bg-primary/5 hover:scale-[1.02]
-      active:scale-[0.98]
-    `,
-    correct: `
-      bg-success/10 border-success text-success
-      scale-[1.02]
-    `,
-    incorrect: `
-      bg-destructive/10 border-destructive text-destructive
-      scale-[0.98]
-    `,
-  };
-
+}: VariantButtonProps) => {
   return (
     <button
-      data-word={translation}
       data-label={label}
-      disabled={disabled}
-      {...props}
-      className={`
-        w-full px-6 py-4 rounded-xl
-        border-2 transition-all duration-200 ease-out
-        font-medium text-base sm:text-lg
-        shadow-sm hover:shadow-md
-        animate-fade-in-up
-        ${stateStyles[state]}
-        ${disabled ? "cursor-not-allowed" : "cursor-pointer"}
-        ${className || ""}
-      `}
+      data-word={translation}
+      onClick={disabled ? undefined : onClick}
       style={{ animationDelay: `${animationDelay}ms` }}
+      className={cn(
+        "w-full px-6 py-5 rounded-2xl border-2 font-medium text-base sm:text-lg",
+        "transition-all duration-200 flex items-center justify-center gap-3 shadow-sm",
+        "touch-manipulation", // ← важно для мобильных
+
+        // Default
+        !isSelected &&
+          "bg-card border-border hover:border-primary hover:bg-primary/5 active:scale-[0.98] cursor-pointer",
+
+        // Correct
+        isSelected &&
+          isCorrectAnswer &&
+          "bg-green-100 border-green-600 text-green-700 shadow-md scale-[1.02]",
+
+        // Incorrect
+        isSelected &&
+          !isCorrectAnswer &&
+          "bg-red-100 border-red-600 text-red-700 shadow-md scale-[0.98]",
+
+        // После выбора — блокируем взаимодействие
+        disabled && "cursor-not-allowed opacity-70 pointer-events-none",
+
+        className,
+      )}
+      {...props}
     >
-      <span className="flex items-center justify-center gap-2">
-        {state === "correct" && (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
-        )}
-        {state === "incorrect" && (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        )}
-        {label}
-      </span>
+      {isSelected && isCorrectAnswer && <span className="text-xl">✓</span>}
+      {isSelected && !isCorrectAnswer && <span className="text-xl">✕</span>}
+      {label}
     </button>
   );
 };

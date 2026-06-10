@@ -22,7 +22,7 @@ export const TaskComponent = ({word, className}: TaskComponentProps) => {
             <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
               {word.category}
             </span>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground font-code mb-2">
+            <h2 className="text-4xl sm:text-3xl lg:text-6xl font-bold text-foreground font-code mb-2">
               {word.word}
             </h2>
             <p className="text-muted-foreground text-sm">

@@ -5,6 +5,8 @@ type StopTestButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   isTrainingStarted: boolean;
   setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
+  isResultStatistic: boolean;
+  setResultStatistic: Dispatch<SetStateAction<boolean>>
 };
 
 const StopTestButton = ({
@@ -12,9 +14,11 @@ const StopTestButton = ({
   onClick,
   isTrainingStarted,
   setIsTrainingStarted,
+  setResultStatistic,
 }: StopTestButtonProps) => {
   const handleClick = () => {
     setIsTrainingStarted(!isTrainingStarted);
+    setResultStatistic(true);
   };
   
   return (

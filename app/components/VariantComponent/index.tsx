@@ -24,7 +24,7 @@ type VariantComponentProps = {
   setIsButtonVisible: Dispatch<SetStateAction<boolean>>;
   isButtonVisible: boolean;
   isResultStatistic: boolean;
-  setResultStatistic: Dispatch<SetStateAction<boolean>>
+  setResultStatistic: Dispatch<SetStateAction<boolean>>;
 };
 
 export const VariantComponent = ({
@@ -42,7 +42,6 @@ export const VariantComponent = ({
   setResultStatistic,
 }: VariantComponentProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     const label = event.currentTarget.dataset.label || "Unknown label";
@@ -50,33 +49,32 @@ export const VariantComponent = ({
 
     if (word && selectedAnswer === null) {
       setSelectedAnswer(label);
-      const correct = label === translation;
-      setIsCorrect(correct);
 
-      if (correct) {
+      const isCorrect = label === translation;
+
+      if (isCorrect) {
         setCorrectAnswers((prev) =>
-          prev.some((w) => w.id === word.id) ? prev : [...prev, word]
+          prev.some((w) => w.id === word.id) ? prev : [...prev, word],
         );
       } else {
         setWrongAnswers((prev) =>
-          prev.some((w) => w.id === word.id) ? prev : [...prev, word]
+          prev.some((w) => w.id === word.id) ? prev : [...prev, word],
         );
       }
 
-      // Auto-advance after showing feedback
+      // Увеличил задержку и добавил принудительный сброс
       setTimeout(() => {
-        setSelectedAnswer(null);
-        setIsCorrect(null);
+        setSelectedAnswer(null); // ← сбрасываем выбор
         setIds((prev) => {
           const newIds = prev.slice(1);
-          if(newIds.length === 0 && isTrainingStarted) {
+          if (newIds.length === 0 && isTrainingStarted) {
             setIsTrainingStarted(false);
             setResultStatistic(true);
             setIsButtonVisible(true);
           }
           return newIds;
         });
-      }, 800);
+      }, 1100); // 1000 мс — комфортнее для пользователя
     }
   };
 
@@ -88,30 +86,25 @@ export const VariantComponent = ({
 
   return (
     <div className="w-full">
-      <p className="text-center text-muted-foreground mb-4">Выберите правильный перевод</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+      <p className="text-center text-muted-foreground mb-6 text-lg">
+        Выберите правильный перевод
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {variants.map((label, index) => {
           const isSelected = selectedAnswer === label;
           const isCorrectAnswer = label === translation;
-          
-          let state: "default" | "correct" | "incorrect" = "default";
-          if (selectedAnswer !== null) {
-            if (isCorrectAnswer) {
-              state = "correct";
-            } else if (isSelected && !isCorrectAnswer) {
-              state = "incorrect";
-            }
-          }
-          
+
           return (
             <VariantButton
               key={index}
               onClick={handleClick}
               label={label}
-              translation={label === translation ? translation : label}
-              state={state}
+              translation={label === translation ? translation : undefined}
+              isSelected={isSelected}
+              isCorrectAnswer={isCorrectAnswer}
               disabled={selectedAnswer !== null}
-              animationDelay={index * 50}
+              animationDelay={index * 60}
             />
           );
         })}
