@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MouseEvent } from "react";
 import { Header } from "../components/Header";
 import Button from "../components/ui/Button";
@@ -34,7 +34,7 @@ export default function TrainingPage() {
   const [ids, setIds] = useState<number[]>([]);
   const [wrongAnswers, setWrongAnswers] = useState<Word[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<Word[]>([]);
-  const distractors = shuffle<string>(answersArray);
+  // const distractors = shuffle<string>(answersArray);
   const [isResultStatistic, setResultStatistic] = useState(false);
 
   const arrayMaker = (array: Word[]): number[] => {
@@ -53,6 +53,8 @@ export default function TrainingPage() {
 
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
+
+  const distractors = useMemo(() => shuffle<string>(answersArray), [firstWord]);
 
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
     console.log("Test stopped");
