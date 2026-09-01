@@ -42,6 +42,8 @@ export const VariantComponent = ({
   setResultStatistic,
 }: VariantComponentProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const checkAnswers = (label: string, translation: string): boolean =>
+    label === translation;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     const label = event.currentTarget.dataset.label || "Unknown label";
@@ -50,7 +52,7 @@ export const VariantComponent = ({
     if (word && selectedAnswer === null) {
       setSelectedAnswer(label);
 
-      const isCorrect = label === translation;
+      const isCorrect = checkAnswers(label, translation);
 
       if (isCorrect) {
         setCorrectAnswers((prev) =>
