@@ -10,35 +10,34 @@ type Word = {
   category: string;
 };
 
+// type VariantComponentProps = {
+//   word: Word | null;
+//   distractors?: string[];
+//   onAnswer: (label: string) => void;
+// }
+
 type VariantComponentProps = {
   word: Word | null;
   distractors?: string[];
   className?: string;
-  correctAnswers: Word[];
   setCorrectAnswers: Dispatch<SetStateAction<Word[]>>;
-  wrongAnswers: Word[];
   setWrongAnswers: Dispatch<SetStateAction<Word[]>>;
   setIds: Dispatch<SetStateAction<number[]>>;
   isTrainingStarted: boolean;
   setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
   setIsButtonVisible: Dispatch<SetStateAction<boolean>>;
-  isButtonVisible: boolean;
-  isResultStatistic: boolean;
   setResultStatistic: Dispatch<SetStateAction<boolean>>;
 };
 
 export const VariantComponent = ({
   word,
   distractors = [],
-  correctAnswers,
   setCorrectAnswers,
-  wrongAnswers,
   setWrongAnswers,
   setIds,
   isTrainingStarted,
   setIsTrainingStarted,
   setIsButtonVisible,
-  isResultStatistic,
   setResultStatistic,
 }: VariantComponentProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -63,10 +62,8 @@ export const VariantComponent = ({
           prev.some((w) => w.id === word.id) ? prev : [...prev, word],
         );
       }
-
-      // Увеличил задержку и добавил принудительный сброс
       setTimeout(() => {
-        setSelectedAnswer(null); // ← сбрасываем выбор
+        setSelectedAnswer(null);
         setIds((prev) => {
           const newIds = prev.slice(1);
           if (newIds.length === 0 && isTrainingStarted) {
@@ -76,7 +73,7 @@ export const VariantComponent = ({
           }
           return newIds;
         });
-      }, 1100); // 1000 мс — комфортнее для пользователя
+      }, 1100);
     }
   };
 

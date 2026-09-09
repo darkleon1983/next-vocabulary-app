@@ -50,6 +50,14 @@ export default function TrainingPage() {
     setWrongAnswers([]);
     setCorrectAnswers([]);
   };
+  //Переписать функцию
+  // const handleAnswer = (label: string) => {
+  //   if (firstWord && label === firstWord.translation) {
+  //   setCorrectAnswers(prev => prev.some(w => w.id === firstWord.id) ? prev : [...prev, firstWord])
+  //   } else {
+  //     setWrongAnswers(prev => prev.some(w => w.id === firstWord.id) ? prev : [...prev, firstWord])
+  //   }
+  // };
 
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
@@ -131,16 +139,12 @@ export default function TrainingPage() {
                 <VariantComponent
                   word={firstWord}
                   distractors={distractors}
-                  correctAnswers={correctAnswers}
                   setCorrectAnswers={setCorrectAnswers}
-                  wrongAnswers={wrongAnswers}
                   isTrainingStarted={isTrainingStarted}
                   setIsTrainingStarted={setIsTrainingStarted}
-                  isButtonVisible={isButtonVisible}
                   setIsButtonVisible={setIsButtonVisible}
                   setWrongAnswers={setWrongAnswers}
                   setIds={setIds}
-                  isResultStatistic={isResultStatistic}
                   setResultStatistic={setResultStatistic}
                 />
               </div>
@@ -165,4 +169,3 @@ export default function TrainingPage() {
     </div>
   );
 }
- 
