@@ -51,13 +51,6 @@ export default function TrainingPage() {
     setCorrectAnswers([]);
   };
   //Переписать функцию
-  // const handleAnswer = (label: string) => {
-  //   if (firstWord && label === firstWord.translation) {
-  //   setCorrectAnswers(prev => prev.some(w => w.id === firstWord.id) ? prev : [...prev, firstWord])
-  //   } else {
-  //     setWrongAnswers(prev => prev.some(w => w.id === firstWord.id) ? prev : [...prev, firstWord])
-  //   }
-  // };
 
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
@@ -66,6 +59,30 @@ export default function TrainingPage() {
 
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
     console.log("Test stopped");
+  };
+  const handleAnswer = (label: string) => {
+    if (!firstWord) return;
+    if (label === firstWord.translation.trim()) {
+      setCorrectAnswers((prev) =>
+        prev.some((w) => w.id === firstWord.id) ? prev : [...prev, firstWord],
+      );
+    } else {
+      setWrongAnswers((prev) =>
+        prev.some((w) => w.id === firstWord.id) ? prev : [...prev, firstWord],
+      );
+    }
+
+    setTimeout(() => {
+      setIds((prev) => {
+        const newIds = prev.slice(1);
+        if (newIds.length === 0 && isTrainingStarted) {
+          setIsTrainingStarted(false);
+          setResultStatistic(true);
+          setIsButtonVisible(true);
+        }
+        return newIds;
+      });
+    }, 1100);
   };
 
   console.log(
@@ -137,15 +154,17 @@ export default function TrainingPage() {
 
               <div className="w-full max-w-2xl mt-8">
                 <VariantComponent
+                  key={firstWord?.id || "initial"}
                   word={firstWord}
                   distractors={distractors}
-                  setCorrectAnswers={setCorrectAnswers}
-                  isTrainingStarted={isTrainingStarted}
-                  setIsTrainingStarted={setIsTrainingStarted}
-                  setIsButtonVisible={setIsButtonVisible}
-                  setWrongAnswers={setWrongAnswers}
-                  setIds={setIds}
-                  setResultStatistic={setResultStatistic}
+                  // setCorrectAnswers={setCorrectAnswers}
+                  // isTrainingStarted={isTrainingStarted}
+                  // setIsTrainingStarted={setIsTrainingStarted}
+                  // setIsButtonVisible={setIsButtonVisible}
+                  // setWrongAnswers={setWrongAnswers}
+                  // setIds={setIds}
+                  // setResultStatistic={setResultStatistic}
+                  onAnswer={handleAnswer}
                 />
               </div>
             </div>
