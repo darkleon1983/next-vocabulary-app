@@ -34,7 +34,6 @@ export default function TrainingPage() {
   const [ids, setIds] = useState<number[]>([]);
   const [wrongAnswers, setWrongAnswers] = useState<Word[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<Word[]>([]);
-  // const distractors = shuffle<string>(answersArray);
   const [isResultStatistic, setResultStatistic] = useState(false);
 
   const arrayMaker = (array: Word[]): number[] => {
@@ -50,7 +49,6 @@ export default function TrainingPage() {
     setWrongAnswers([]);
     setCorrectAnswers([]);
   };
-  //Переписать функцию
 
   const firstWord =
     ids.length > 0 ? (words.find((word) => word.id === ids[0]) ?? null) : null;
@@ -58,7 +56,6 @@ export default function TrainingPage() {
   const distractors = useMemo(() => shuffle<string>(answersArray), [firstWord]);
 
   const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
-    console.log("Test stopped");
   };
   const handleAnswer = (label: string) => {
     if (!firstWord) return;
@@ -85,12 +82,6 @@ export default function TrainingPage() {
     }, 1100);
   };
 
-  console.log(
-    "Result statistic is   ",
-    isResultStatistic,
-    "TrainingStarted is   ",
-    isTrainingStarted,
-  );
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -126,7 +117,7 @@ export default function TrainingPage() {
               </p>
             </div>
 
-            <Button onClick={handleClick} />
+            <Button onClick={handleClick}>Начать тренировку</Button>
           </div>
         )}
 
@@ -157,13 +148,6 @@ export default function TrainingPage() {
                   key={firstWord?.id || "initial"}
                   word={firstWord}
                   distractors={distractors}
-                  // setCorrectAnswers={setCorrectAnswers}
-                  // isTrainingStarted={isTrainingStarted}
-                  // setIsTrainingStarted={setIsTrainingStarted}
-                  // setIsButtonVisible={setIsButtonVisible}
-                  // setWrongAnswers={setWrongAnswers}
-                  // setIds={setIds}
-                  // setResultStatistic={setResultStatistic}
                   onAnswer={handleAnswer}
                 />
               </div>

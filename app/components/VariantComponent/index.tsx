@@ -1,11 +1,4 @@
-import React, {
-  Dispatch,
-  MouseEvent,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { MouseEvent, useMemo, useState } from "react";
 import VariantButton from "../ui/VariantButton";
 import { shuffle } from "@/app/utils/wordPicker";
 
@@ -17,23 +10,9 @@ type Word = {
   category: string;
 };
 
-// type VariantComponentProps = {
-//   word: Word | null;
-//   distractors?: string[];
-//   onAnswer: (label: string) => void;
-// }
-
 type VariantComponentProps = {
   word: Word | null;
   distractors?: string[];
-  className?: string;
-  // setCorrectAnswers: Dispatch<SetStateAction<Word[]>>;
-  // setWrongAnswers: Dispatch<SetStateAction<Word[]>>;
-  // setIds: Dispatch<SetStateAction<number[]>>;
-  // isTrainingStarted: boolean;
-  // setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
-  // setIsButtonVisible: Dispatch<SetStateAction<boolean>>;
-  // setResultStatistic: Dispatch<SetStateAction<boolean>>;
   onAnswer: (label: string) => void;
 };
 
@@ -43,15 +22,13 @@ export const VariantComponent = ({
   onAnswer,
 }: VariantComponentProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const checkAnswers = (label: string, translation: string): boolean =>
-    label === translation;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     const label = event.currentTarget.dataset.label || "Unknown label";
 
     if (word && selectedAnswer === null) {
       setSelectedAnswer(label);
-      return onAnswer(label);
+      onAnswer(label);
     }
   };
   const translation = word ? word.translation : "Нет перевода";
