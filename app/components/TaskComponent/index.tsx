@@ -1,19 +1,12 @@
 import React from "react";
-
-type Word = {
-  id: number;
-  word: string;
-  translation: string;
-  partOfSpeech: string;
-  category: string;
-};
+import { Word } from "../../types";
 
 type TaskComponentProps = {
   word: Word | null;
   className?: string;
-}
+};
 
-export const TaskComponent = ({word, className}: TaskComponentProps) => {
+export const TaskComponent = ({ word, className }: TaskComponentProps) => {
   return (
     <div className={`w-full max-w-2xl ${className || ""}`}>
       {word ? (
@@ -22,12 +15,10 @@ export const TaskComponent = ({word, className}: TaskComponentProps) => {
             <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
               {word.category}
             </span>
-            <h2 className="text-4xl sm:text-3xl lg:text-6xl font-bold text-foreground font-code mb-2">
+            <h2 className="text-4xl sm:text-3xl lg:text-2xl font-bold text-foreground font-code mb-2">
               {word.word}
             </h2>
-            <p className="text-muted-foreground text-sm">
-              {word.partOfSpeech}
-            </p>
+            <p className="text-muted-foreground text-sm">{word.partOfSpeech}</p>
           </div>
         </div>
       ) : (
@@ -37,4 +28,4 @@ export const TaskComponent = ({word, className}: TaskComponentProps) => {
       )}
     </div>
   );
-}
+};

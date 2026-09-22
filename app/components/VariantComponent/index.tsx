@@ -1,14 +1,7 @@
 import React, { MouseEvent, useMemo, useState } from "react";
 import VariantButton from "../ui/VariantButton";
 import { shuffle } from "@/app/utils/wordPicker";
-
-type Word = {
-  id: number;
-  word: string;
-  translation: string;
-  partOfSpeech: string;
-  category: string;
-};
+import { Word } from "../../types";
 
 type VariantComponentProps = {
   word: Word | null;

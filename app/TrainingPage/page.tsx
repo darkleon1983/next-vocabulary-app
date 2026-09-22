@@ -13,14 +13,7 @@ import { StatisticComponent } from "../components/StatisticComponent";
 import { ResultStatistic } from "../components/ResultStatistic";
 import StopTestButton from "../components/ui/StopTestButton";
 import { useTest } from "@/context/TestContext";
-
-type Word = {
-  id: number;
-  word: string;
-  translation: string;
-  partOfSpeech: string;
-  category: string;
-};
+import { Word } from "../types";
 
 const words = wordsJson as Word[];
 
@@ -55,7 +48,10 @@ export default function TrainingPage() {
 
   const distractors = useMemo(() => shuffle<string>(answersArray), [firstWord]);
 
-  const handleClickStop = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClickStop = () => {
+    setIsTrainingStarted(false);
+    setResultStatistic(true);
+    setIsButtonVisible(true);
   };
   const handleAnswer = (label: string) => {
     if (!firstWord) return;
@@ -117,7 +113,23 @@ export default function TrainingPage() {
               </p>
             </div>
 
-            <Button onClick={handleClick}>Начать тренировку</Button>
+            <Button onClick={handleClick}>
+              Начать тренировку
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </Button>
           </div>
         )}
 
@@ -127,16 +139,10 @@ export default function TrainingPage() {
             {/* Progress indicator */}
             <div className="mb-6 flex items-center justify-between">
               <StatisticComponent
-                correctAnswers={correctAnswers}
-                wrongAnswers={wrongAnswers}
+                correctCount={correctAnswers.length}
+                wrongCount={wrongAnswers.length}
               />
-              <StopTestButton
-                onClick={handleClickStop}
-                isTrainingStarted={isTrainingStarted}
-                setIsTrainingStarted={setIsTrainingStarted}
-                setResultStatistic={setResultStatistic}
-                isResultStatistic={false}
-              />
+              <StopTestButton onStop={handleClickStop} />
             </div>
 
             {/* Word Card */}

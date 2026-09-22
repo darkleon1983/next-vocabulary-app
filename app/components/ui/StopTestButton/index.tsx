@@ -1,29 +1,18 @@
-import React, { Dispatch, MouseEventHandler, SetStateAction } from "react";
+import React from "react";
 
 type StopTestButtonProps = {
   className?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  isTrainingStarted: boolean;
-  setIsTrainingStarted: Dispatch<SetStateAction<boolean>>;
-  isResultStatistic: boolean;
-  setResultStatistic: Dispatch<SetStateAction<boolean>>
+  onStop: () => void;
 };
 
-const StopTestButton = ({
-  className,
-  onClick,
-  isTrainingStarted,
-  setIsTrainingStarted,
-  setResultStatistic,
-}: StopTestButtonProps) => {
+const StopTestButton = ({ className, onStop }: StopTestButtonProps) => {
   const handleClick = () => {
-    setIsTrainingStarted(!isTrainingStarted);
-    setResultStatistic(true);
+    onStop();
   };
-  
+
   return (
-    <button 
-      onClick={handleClick} 
+    <button
+      onClick={handleClick}
       className={`
         flex items-center gap-2 px-4 py-2
         bg-destructive/10 text-destructive
@@ -36,7 +25,17 @@ const StopTestButton = ({
         ${className || ""}
       `}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <rect width="14" height="14" x="5" y="5" rx="2" />
       </svg>
       Стоп тест
