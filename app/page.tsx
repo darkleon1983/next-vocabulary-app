@@ -23,7 +23,7 @@ export default function MainPage() {
           </p>
 
           <Link
-            href="/TrainingPage"
+            href="/trainingpage"
             className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse-glow"
           >
             Начать тренировку

@@ -10,7 +10,7 @@ interface HeaderProps {
 }
 
 const menuItems = [
-  { label: "Тренажер", href: "/TrainingPage" },
+  { label: "Тренажер", href: "/trainingpage" },
   { label: "О проекте", href: "/" },
 ];
 
@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-18 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold font-code text-sm transition-transform group-hover:scale-105">
-          ВордКодер
+            ВордКодер
           </div>
           <span className="text-lg font-semibold text-foreground hidden sm:block">
             WordCoder
@@ -42,9 +42,10 @@ export const Header: React.FC<HeaderProps> = () => {
                 className={`
                   px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium
                   transition-all duration-200 ease-out
-                  ${isActive 
-                    ? "bg-primary text-primary-foreground shadow-md" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                  ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-md"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   }
                 `}
               >
@@ -52,7 +53,7 @@ export const Header: React.FC<HeaderProps> = () => {
               </Link>
             );
           })}
-          
+
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
