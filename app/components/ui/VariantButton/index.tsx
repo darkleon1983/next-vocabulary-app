@@ -22,16 +22,23 @@ const VariantButton = ({
   onClick,
   ...props
 }: VariantButtonProps) => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      onClick(event);
+    }
+    event.currentTarget.blur();
+  };
+
   return (
     <button
       data-label={label}
       data-word={translation}
-      onClick={disabled ? undefined : onClick}
+      onClick={disabled ? undefined : handleButtonClick}
       style={{ animationDelay: `${animationDelay}ms` }}
       className={cn(
         "w-full px-6 py-5 rounded-2xl border-2 font-medium text-base sm:text-lg",
         "transition-all duration-200 flex items-center justify-center gap-3 shadow-sm",
-        "touch-manipulation", // ← важно для мобильных
+        "touch-manipulation focus: outline-none", // ← важно для мобильных
 
         // Default
         !isSelected &&
