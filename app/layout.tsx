@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { TestProvider } from "@/context/TestContext";
 import { ThemeProvider } from "@/components/theme-provider";
-
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   subsets: ["cyrillic", "latin"],
@@ -66,9 +66,11 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="font-sans min-h-screen bg-background text-foreground transition-colors duration-300">
-        <ThemeProvider defaultTheme="light" storageKey="wordcoder-theme">
-          <TestProvider>{children}</TestProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider defaultTheme="light" storageKey="wordcoder-theme">
+            <TestProvider>{children}</TestProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
