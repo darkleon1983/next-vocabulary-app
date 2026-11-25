@@ -12,6 +12,7 @@ import { VariantComponent } from "../components/VariantComponent";
 import { StatisticComponent } from "../components/StatisticComponent";
 import { ResultStatistic } from "../components/ResultStatistic";
 import StopTestButton from "../components/ui/StopTestButton";
+import GuestBanner from "../components/GuestBanner";
 import { useTest } from "@/context/TestContext";
 import { Word } from "../types";
 
@@ -81,7 +82,7 @@ export default function TrainingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-
+      <GuestBanner></GuestBanner>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Start Screen */}
         {!isTrainingStarted && !isResultStatistic && (
